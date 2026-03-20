@@ -1,0 +1,49 @@
+/* Dark background overlay */
+.order-window-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.order-window-container {
+  width: 350px;
+  background: white;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  padding: 20px;
+}
+
+.order-inputs {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+}
+
+.order-inputs label {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 5px;
+}
+
+.order-inputs input {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+}
+
+.buy-title { color: #387ed1; border-bottom: 2px solid #387ed1; padding-bottom: 5px; }
+.sell-title { color: #df5148; border-bottom: 2px solid #df5148; padding-bottom: 5px; }
+
+.btn-buy { background: #387ed1; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 3px; font-weight: bold; }
+.btn-sell { background: #df5148; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 3px; font-weight: bold; }
+.btn-cancel { background: #eee; border: none; padding: 10px 20px; margin-left: 10px; cursor: pointer; border-radius: 3px; color: #666; }
+
+.btn-buy:hover, .btn-sell:hover { opacity: 0.9; }
