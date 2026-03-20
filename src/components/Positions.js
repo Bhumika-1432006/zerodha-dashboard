@@ -7,6 +7,7 @@ const Positions = () => {
 
   useEffect(() => {
     if (userEmail) {
+      // UPDATED: Corrected to your live render URL
       axios
         .get(`https://zerodha-pify.onrender.com/allOrders/${userEmail}`)
         .then((res) => {
@@ -18,7 +19,7 @@ const Positions = () => {
     }
   }, [userEmail]);
 
-  // Calculation Logic
+  // Calculation Logic (Kept exactly as your version)
   const totalPnL = allPositions.reduce((acc, pos) => {
     const currentPrice = pos.price || 0;
     const avgPrice = pos.avg || pos.price || 0;
