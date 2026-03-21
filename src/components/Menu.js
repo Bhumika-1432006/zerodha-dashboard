@@ -68,8 +68,8 @@ const Menu = () => {
         </ul>
         <hr />
         <div className="profile" onClick={handleProfileClick}>
-          {/* UPDATED: Replace with your actual live Frontend Vercel URL */}
-          <a href="https://your-frontend-link.vercel.app/" className="avatar-link">
+          {/* UPDATED: Points to your live Landing Page URL from Vercel screenshot */}
+          <a href="https://zerodha-frontend-xi.vercel.app/" className="avatar-link" style={{ textDecoration: "none" }}>
             <div className="avatar">ZU</div>
           </a>
           <p className="username">{localStorage.getItem("userEmail") || "USERID"}</p>
