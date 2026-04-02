@@ -23,7 +23,7 @@ const Apps = () => {
           <Route path="/holdings" element={<Holdings />} />
           <Route path="/positions" element={<Positions />} />
           <Route path="/funds" element={<Funds />} />
-           <Route path="/apps" element={<MenuApps />} />
+           <Route path="apps" element={<MenuApps />} />
         </Routes>
       </div>
     </div>
