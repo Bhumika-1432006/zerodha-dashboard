@@ -1368,31 +1368,3 @@ hr {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
-/* This makes the button pop when you hover */
-.logout-avatar:hover {
-  background-color: #eb5757 !important; /* Turns solid red */
-  border-color: #eb5757 !important;
-}
-
-.logout-avatar:hover svg {
-  color: white !important; /* Icon turns white */
-}
-
-/* Optional: Add a small tooltip-like feel */
-.logout-button-wrapper {
-  position: relative;
-}
-
-.logout-button-wrapper:hover::after {
-  content: "Logout";
-  position: absolute;
-  top: -30px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #333;
-  color: #fff;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 10px;
-  white-space: nowrap;
-}
