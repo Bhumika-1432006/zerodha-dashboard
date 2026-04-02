@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { MenuOutlined, CloseOutlined } from "@mui/icons-material";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const Menu = () => {
   const [selectedMenu, setSelectedMenu] = useState(0);
