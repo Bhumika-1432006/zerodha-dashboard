@@ -1,0 +1,66 @@
+export const appData = [
+  {
+    id: 1,
+    name: "Universe",
+    description: "Explore the ecosystem of apps integrated with your trading account.",
+    icon: "🌌",
+    tag: "Ecosystem",
+    link: "https://zerodha.com/universe",
+  },
+  {
+    id: 2,
+    name: "Sentinel",
+    description: "Create powerful real-time price alerts for stocks, futures, and options.",
+    icon: "🛡️",
+    tag: "Utility",
+    link: "https://sentinel.zerodha.com/",
+  },
+  {
+    id: 3,
+    name: "Smallcase",
+    description: "Invest in professionally managed baskets of stocks and ETFs.",
+    icon: "💼",
+    tag: "Invest",
+    link: "https://www.smallcase.com/",
+  },
+  {
+    id: 4,
+    name: "Streak",
+    description: "Create, backtest, and deploy trading strategies without coding.",
+    icon: "📈",
+    tag: "Algo",
+    link: "https://www.streak.tech/",
+  },
+  {
+    id: 5,
+    name: "Sensibull",
+    description: "India's biggest Options trading platform with expert strategies.",
+    icon: "🎯",
+    tag: "Options",
+    link: "https://sensibull.com/",
+  },
+  {
+    id: 6,
+    name: "GoldenPi",
+    description: "A marketplace for bonds and fixed-income investments.",
+    icon: "🪙",
+    tag: "Bonds",
+    link: "https://goldenpi.com/",
+  },
+  {
+    id: 7,
+    name: "HelpGPT",
+    description: "AI-powered assistant for instant support and market insights.",
+    icon: "💡",
+    tag: "AI Support",
+    link: "#", // You can link this to your HelpGPT project URL
+  },
+  {
+    id: 8,
+    name: "Ditto",
+    description: "Get spam-free health and life insurance advice for your future.",
+    icon: "☂️",
+    tag: "Insurance",
+    link: "https://joinditto.in/",
+  }
+];
