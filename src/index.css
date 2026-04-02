@@ -1197,14 +1197,14 @@ hr {
     padding-bottom: 10px;
   }
 }
-/* Base Desktop Styles */
+/* Desktop Styles */
 .menu-container {
   width: 100%;
   height: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 35px;
+  padding: 0 40px;
   background: #fff;
   border-bottom: 1px solid #eee;
   box-sizing: border-box;
@@ -1213,7 +1213,6 @@ hr {
 .menu-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
 .logo-img {
@@ -1240,60 +1239,71 @@ hr {
   margin-left: 25px;
 }
 
-/* --- MOBILE FIX: BRINGING CONTENT BELOW --- */
+.menu {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0;
+}
+
+.menu.selected {
+  color: rgb(245, 104, 52);
+  font-weight: 500;
+}
+
+/* Mobile Styles */
 @media (max-width: 991px) {
   .menu-container {
-    flex-direction: column; /* Stack top bar and links */
-    height: auto !important; /* Forces container to grow to fit Dashboard/Orders */
-    align-items: stretch;
+    display: block; /* Stack header and menu vertically */
+    height: auto !important; /* Grow to fit all 6 items */
     padding: 15px 20px;
   }
 
   .menu-header {
     width: 100%;
-    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .hamburger {
     display: block;
     cursor: pointer;
+    font-size: 1.5rem;
   }
 
   .menus {
-    display: none; /* Hide when toggle is off */
+    display: none; /* Hide when closed */
     flex-direction: column;
     width: 100%;
-    padding-top: 10px;
+    padding-top: 20px;
   }
 
   .menus.is-open {
-    display: flex !important; /* Makes ALL list items visible from the top */
+    display: flex !important; /* Forces Dashboard and Orders to appear */
   }
 
   .menus ul {
     flex-direction: column;
     width: 100%;
-    padding: 0;
   }
 
   .menus li {
     margin: 0;
-    width: 100%;
-    padding: 12px 0;
+    padding: 15px 0;
     border-bottom: 1px solid #f9f9f9;
+    width: 100%;
   }
 
   .mobile-hr {
     display: block;
-    width: 100%;
     border: none;
     border-top: 1px solid #eee;
-    margin: 10px 0;
+    margin: 15px 0;
   }
 
   .profile {
-    margin: 0;
-    justify-content: flex-start;
-    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
   }
 }
