@@ -5,20 +5,60 @@ import {
   BarChartOutlined,
   KeyboardArrowDown,
   KeyboardArrowUp,
+  KeyboardArrowLeft,
+  KeyboardArrowRight,
   MoreHoriz,
 } from "@mui/icons-material";
 
 import { watchlist } from "../data/data";
 import { DoughnutChart } from "./DoughnoutChart";
 
-return (
-    <div className={`watchlist-container ${isOpen ? "is-open" : "is-collapsed"}`}>
-      <div className="search-container">
-        {/* The Arrow/Icon to toggle */}
-        <div className="mobile-drawer-handle" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <KeyboardArrowDown /> : <KeyboardArrowUp />}
-        </div>
+const WatchList = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  // Default to false on mobile so other pages (Holdings/Apps) are visible immediately
+  const [isOpen, setIsOpen] = useState(false);
 
+  const filteredWatchlist = watchlist.filter((stock) =>
+    (stock.name || "").toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const labels = filteredWatchlist.map((stock) => stock.name);
+
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: "Price",
+        data: filteredWatchlist.map((stock) => stock.price),
+        backgroundColor: [
+          "rgba(255, 99, 132, 0.5)",
+          "rgba(54, 162, 235, 0.5)",
+          "rgba(255, 206, 86, 0.5)",
+          "rgba(75, 192, 192, 0.5)",
+          "rgba(153, 102, 255, 0.5)",
+          "rgba(255, 159, 64, 0.5)",
+        ],
+        borderColor: [
+          "rgba(255, 99, 132, 1)",
+          "rgba(54, 162, 235, 1)",
+          "rgba(255, 206, 86, 1)",
+          "rgba(75, 192, 192, 1)",
+          "rgba(153, 102, 255, 1)",
+          "rgba(255, 159, 64, 1)",
+        ],
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  return (
+    <div className={`watchlist-container ${isOpen ? "is-open" : "is-collapsed"}`}>
+      {/* THE SIDE HANDLE: Stays on the edge to pull the list in/out */}
+      <div className="mobile-drawer-handle" onClick={() => setIsOpen(!isOpen)}>
+        {isOpen ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+      </div>
+
+      <div className="search-container">
         <input
           type="text"
           name="search"
@@ -28,8 +68,7 @@ return (
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           autoComplete="off"
-        /> {/* Fixed the syntax error here */}
-        
+        />
         <span className="counts"> {filteredWatchlist.length} / {watchlist.length}</span>
       </div>
 
@@ -43,6 +82,7 @@ return (
       </div>
     </div>
   );
+};
 
 export default WatchList;
 
