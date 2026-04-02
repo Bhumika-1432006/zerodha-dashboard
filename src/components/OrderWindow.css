@@ -47,3 +47,108 @@
 .btn-cancel { background: #eee; border: none; padding: 10px 20px; margin-left: 10px; cursor: pointer; border-radius: 3px; color: #666; }
 
 .btn-buy:hover, .btn-sell:hover { opacity: 0.9; }
+
+/* Dark background overlay */
+.order-window-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.order-window-container {
+  width: 350px;
+  background: white;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  padding: 20px;
+}
+
+.order-inputs {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+}
+
+.order-inputs label {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 5px;
+}
+
+.order-inputs input {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+}
+
+.buy-title { color: #387ed1; border-bottom: 2px solid #387ed1; padding-bottom: 5px; }
+.sell-title { color: #df5148; border-bottom: 2px solid #df5148; padding-bottom: 5px; }
+
+.btn-buy { background: #387ed1; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 3px; font-weight: bold; }
+.btn-sell { background: #df5148; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 3px; font-weight: bold; }
+.btn-cancel { background: #eee; border: none; padding: 10px 20px; margin-left: 10px; cursor: pointer; border-radius: 3px; color: #666; }
+
+.btn-buy:hover, .btn-sell:hover { opacity: 0.9; }
+
+/* Toast Notification Styling */
+.order-success-toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  color: white;
+  padding: 12px 22px;
+  border-radius: 4px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  z-index: 3000; 
+  min-width: 320px;
+  font-family: "Inter", sans-serif;
+  animation: slideInRight 0.3s ease-out;
+}
+
+.buy-bg { background-color: #4caf50; } /* Success Green */
+.sell-bg { background-color: #df5148; } /* Theme Red */
+
+.toast-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon-check {
+  background: rgba(255, 255, 255, 0.2);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.toast-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.4);
+  width: 100%;
+  animation: shrinkProgress 2.5s linear forwards;
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes shrinkProgress {
+  from { width: 100%; }
+  to { width: 0%; }
+}
