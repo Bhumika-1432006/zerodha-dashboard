@@ -129,7 +129,7 @@ const Funds = () => {
                   />
                 </div>
                 <button className="btn-otp" onClick={() => mobileNumber.length === 10 ? setIsRegistered(true) : alert("Enter valid number")}>
-                  Get OTP
+                 Register now
                 </button>
               </>
             ) : (
