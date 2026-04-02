@@ -882,7 +882,16 @@ hr {
 @media (min-width: 992px) {
   .mobile-toggle {
     display: none;
+    .list li .actions {
+    display: flex;
+    background: linear-gradient(to left, rgba(255,255,255,1) 80%, rgba(255,255,255,0));
   }
+  }
+
+  .item {
+    padding-right: 120px; 
+  }
+
   .watchlist-container {
     transform: none !important;
     flex-basis: 32%;

@@ -13,17 +13,16 @@ import { DoughnutChart } from "./DoughnoutChart";
 
 const WatchList = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  // New state to toggle visibility on mobile
   const [isMobileVisible, setIsMobileVisible] = useState(false);
 
   const filteredWatchlist = watchlist.filter((stock) =>
     (stock.name || "").toLowerCase().includes(searchTerm.toLowerCase())
   );
 
- // --- RE-ADDED MISSING LOGIC START ---
+  // --- CHART LOGIC ---
   const labels = filteredWatchlist.map((stock) => stock.name);
 
-  const data = {
+  const chartData = {
     labels,
     datasets: [
       {
@@ -49,14 +48,14 @@ const WatchList = () => {
       },
     ],
   };
-  // --- RE-ADDED MISSING LOGIC END ---
+
   return (
     <div className={`watchlist-container ${isMobileVisible ? "mobile-show" : "mobile-hide"}`}>
       
       {/* Toggle Arrow for Mobile */}
       <div className="mobile-toggle" onClick={() => setIsMobileVisible(!isMobileVisible)}>
         {isMobileVisible ? <KeyboardArrowUp /> : <BarChartOutlined />}
-        <span>{isMobileVisible ? "Close Watchlist" : "View Watchlist"}</span>
+        <span>{isMobileVisible ? " Close Watchlist" : " View Watchlist"}</span>
       </div>
 
       <div className="search-container">
@@ -77,13 +76,12 @@ const WatchList = () => {
             <WatchListItem stock={stock} key={index} />
           ))}
         </ul>
-        <DoughnutChart data={data} />
+        {/* FIXED: Passing 'chartData' instead of 'data' */}
+        <DoughnutChart data={chartData} />
       </div>
     </div>
   );
 };
-
-export default WatchList;
 
 const WatchListItem = ({ stock }) => {
   const [showWatchlistActions, setShowWatchlistActions] = useState(false);
@@ -140,3 +138,5 @@ const WatchListActions = ({ uid }) => {
     </span>
   );
 };
+
+export default WatchList;
