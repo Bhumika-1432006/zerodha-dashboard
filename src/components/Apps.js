@@ -7,7 +7,7 @@ import Orders from "./Orders";
 import Holdings from "./Holdings";
 import Positions from "./Positions";
 import Funds from "./Funds";
-import MenuApps from "./appdata";
+import AppData from "./appdata";
 
 const Apps = () => {
   return (
@@ -23,7 +23,7 @@ const Apps = () => {
           <Route path="/holdings" element={<Holdings />} />
           <Route path="/positions" element={<Positions />} />
           <Route path="/funds" element={<Funds />} />
-           <Route path="apps" element={<MenuApps />} />
+          <Route path="/apps" element={<AppData />} />
         </Routes>
       </div>
     </div>
