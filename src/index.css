@@ -899,3 +899,65 @@ hr {
     display: block;
   }
 }
+/* Mobile Toggle Button */
+.mobile-drawer-toggle {
+  display: none; /* Hidden on desktop */
+  position: fixed;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 4000;
+  background: #4184f3;
+  color: white;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  padding: 15px 5px;
+  cursor: pointer;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+  transition: left 0.3s ease-in-out;
+}
+
+.mobile-drawer-toggle.open {
+  left: 80vw; /* Matches the width of the open drawer */
+}
+
+@media (max-width: 991px) {
+  .mobile-drawer-toggle {
+    display: flex;
+    align-items: center;
+  }
+
+  .watchlist-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80vw; /* Takes up 80% of screen on mobile */
+    height: 100vh;
+    background: white;
+    z-index: 3000;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+  }
+
+  .mobile-hide {
+    transform: translateX(-100%); /* Slides completely off-screen to the left */
+  }
+
+  .mobile-show {
+    transform: translateX(0); /* Slides back in */
+  }
+
+  .list-content {
+    height: calc(100vh - 50px);
+    overflow-y: auto;
+  }
+}
+
+/* Ensure desktop remains unaffected */
+@media (min-width: 992px) {
+  .watchlist-container {
+    transform: none !important;
+    position: relative;
+    flex-basis: 32%;
+  }
+}
