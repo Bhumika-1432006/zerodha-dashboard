@@ -16,7 +16,7 @@ const Home = () => {
 
       <TopBar />
       <Apps />
-      <Dashboard />
+      
 
     </>
 
