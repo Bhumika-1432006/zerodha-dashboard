@@ -20,7 +20,7 @@ const Menu = () => {
 
   const handleMenuClick = (index) => {
     setSelectedMenu(index);
-    setIsMenuOpen(false); 
+    setIsMenuOpen(false); // Closes the hamburger after clicking a link
   };
 
   const menuClass = "menu";
@@ -28,7 +28,7 @@ const Menu = () => {
 
   return (
     <div className="menu-container">
-      {/* Header section stays at the top */}
+      {/* 1. TOP BAR SECTION (Always Visible) */}
       <div className="menu-header">
         <img src="logo.png" className="logo-img" alt="logo" />
         <div className="hamburger" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -36,8 +36,8 @@ const Menu = () => {
         </div>
       </div>
 
-      {/* This container will now correctly show ALL 6 items */}
-      <div className={`menus-dropdown ${isMenuOpen ? "is-open" : ""}`}>
+      {/* 2. DROPDOWN SECTION (Toggles Visibility) */}
+      <div className={`menus ${isMenuOpen ? "is-open" : ""}`}>
         <ul>
           <li>
             <Link style={{ textDecoration: "none" }} to="/" onClick={() => handleMenuClick(0)}>
