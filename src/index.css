@@ -1084,3 +1084,116 @@ hr {
     padding-bottom: 15px;
   }
 }
+/* --- DESKTOP VIEW --- */
+.menu-container {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  box-sizing: border-box;
+}
+
+.menu-header {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  width: 35px;
+}
+
+.hamburger {
+  display: none; /* Hide on Desktop */
+}
+
+.menus {
+  display: flex;
+  align-items: center;
+}
+
+.menus ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menus li {
+  margin-left: 25px;
+}
+
+.menu {
+  font-size: 0.85rem;
+  color: #666;
+  margin: 0;
+}
+
+.menu.selected {
+  color: rgb(245, 104, 52);
+  font-weight: 500;
+}
+
+.mobile-hr {
+  display: none; /* Hide desktop separator */
+}
+
+/* --- MOBILE VIEW (Fixing the Missing Items) --- */
+@media (max-width: 991px) {
+  .menu-container {
+    flex-direction: column; /* Stack top bar and links */
+    height: auto; /* Allow growth to show all 6 items */
+    padding: 15px 20px;
+    align-items: stretch;
+  }
+
+  .menu-header {
+    width: 100%;
+    justify-content: space-between; /* Logo left, Hamburger right */
+  }
+
+  .hamburger {
+    display: block;
+    cursor: pointer;
+    font-size: 1.5rem;
+  }
+
+  .menus {
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    width: 100%;
+    padding-top: 20px;
+  }
+
+  .menus.is-open {
+    display: flex; /* Makes ALL list items visible */
+  }
+
+  .menus ul {
+    flex-direction: column; /* Stack Dashboard, Orders, etc. vertically */
+    width: 100%;
+  }
+
+  .menus li {
+    margin: 0;
+    padding: 15px 0;
+    border-bottom: 1px solid #f9f9f9;
+    width: 100%;
+  }
+
+  .mobile-hr {
+    display: block;
+    width: 100%;
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 15px 0;
+  }
+
+  .profile {
+    margin-left: 0;
+    padding-bottom: 10px;
+  }
+}

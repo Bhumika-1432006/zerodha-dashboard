@@ -14,12 +14,13 @@ const Menu = () => {
       localStorage.setItem("userEmail", emailFromUrl);
       const newUrl = window.location.origin + window.location.pathname;
       window.history.replaceState({}, document.title, newUrl);
+      console.log("Logged in as:", emailFromUrl);
     }
   }, []);
 
   const handleMenuClick = (index) => {
     setSelectedMenu(index);
-    setIsMenuOpen(false);
+    setIsMenuOpen(false); // Closes the hamburger after clicking a link
   };
 
   const menuClass = "menu";
@@ -27,7 +28,7 @@ const Menu = () => {
 
   return (
     <div className="menu-container">
-      {/* HEADER SECTION: Always visible */}
+      {/* 1. TOP BAR SECTION (Always Visible) */}
       <div className="menu-header">
         <img src="logo.png" className="logo-img" alt="logo" />
         <div className="hamburger" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -35,7 +36,7 @@ const Menu = () => {
         </div>
       </div>
 
-      {/* NAV SECTION: Toggles on mobile */}
+      {/* 2. DROPDOWN SECTION (Toggles Visibility) */}
       <div className={`menus ${isMenuOpen ? "is-open" : ""}`}>
         <ul>
           <li>
@@ -70,7 +71,7 @@ const Menu = () => {
           </li>
         </ul>
         
-        <hr className="menu-divider" />
+        <hr className="mobile-hr" />
         
         <div className="profile">
           <a href="https://zerodha-frontend-xi.vercel.app/" className="avatar-link" style={{ textDecoration: "none" }}>
