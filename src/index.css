@@ -923,3 +923,62 @@ hr {
     display: none !important;
   }
 }
+/* --- WATCHLIST SLIDE-OUT SYSTEM --- */
+
+@media (max-width: 991px) {
+  .watchlist-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 350px;
+    height: 100vh;
+    background: white;
+    z-index: 2000;
+    border-right: 1px solid #eee;
+    transition: transform 0.3s ease-in-out; /* Smooth sliding */
+  }
+
+  /* 1. COMPLETELY HIDE: Move it 100% left so dashboard is visible */
+  .mobile-hide {
+    transform: translateX(-100%);
+  }
+
+  /* 2. SHOW: Slide it back in when toggled */
+  .mobile-show {
+    transform: translateX(0);
+    box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+  }
+
+  /* 3. THE TRIGGER BUTTON: Must stay on screen even when list is hidden */
+  .mobile-toggle {
+    position: absolute;
+    right: -40px; /* Offset to stay visible on the screen edge */
+    top: 100px;
+    width: 40px;
+    height: 50px;
+    background-color: #387ed1;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 8px 8px 0;
+    cursor: pointer;
+  }
+
+  /* 4. Hide the "Close/View Watchlist" text on mobile to keep the button small */
+  .mobile-toggle span {
+    display: none;
+  }
+}
+
+/* DESKTOP RESET */
+@media (min-width: 992px) {
+  .watchlist-container {
+    transform: none !important;
+    position: relative;
+    width: 350px;
+  }
+  .mobile-toggle {
+    display: none;
+  }
+}
