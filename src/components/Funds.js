@@ -5,22 +5,24 @@ const Funds = () => {
   const [balance, setBalance] = useState(0);
   const userEmail = localStorage.getItem("userEmail");
 
-  // UI State for the modern pop-up (Replaces window.prompt)
+  // UI State for the modern pop-up
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState(""); // "ADD" or "WITHDRAW"
   const [amountInput, setAmountInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
 
+  // New states for Toast Notification
+  const [showToast, setShowToast] = useState(false);
+  const [toastMsg, setToastMsg] = useState("");
+
   useEffect(() => {
     if (userEmail) {
-      // UPDATED URL
       axios.get(`https://zerodha-pify.onrender.com/getBalance/${userEmail}`)
         .then((res) => setBalance(res.data.balance))
         .catch(err => console.log("Balance fetch error"));
     }
   }, [userEmail]);
 
-  // Logic remains 100% identical to your original version
   const handleConfirmAction = async () => {
     const amount = amountInput;
     const password = passwordInput;
@@ -42,16 +44,22 @@ const Funds = () => {
         return;
       }
 
-      // UPDATED URL
       const res = await axios.post(`https://zerodha-pify.onrender.com${endpoint}`, {
         email: userEmail,
         password: password,
         amount: amount
       });
 
-      alert(res.data.message);
+      // --- Success Logic: Replaces browser alert ---
+      setToastMsg(modalType === "ADD" ? `₹${amount} Added Successfully!` : `₹${amount} Withdrawn Successfully!`);
+      setShowToast(true);
+      
       setBalance(res.data.newBalance);
       closeModal();
+
+      // Hide toast after 3 seconds
+      setTimeout(() => setShowToast(false), 3000);
+
     } catch (err) {
       alert(err.response?.data?.message || `Error processing transaction`);
     }
@@ -93,8 +101,37 @@ const Funds = () => {
         .modal-input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; font-size: 15px; outline-color: #387ed1; }
         .modal-actions { display: flex; justify-content: flex-end; gap: 12px; margin-top: 10px; }
         .btn-cancel { background: #f5f5f5; color: #666; border: 1px solid #ddd; }
+
+        /* Toast Styles */
+        .order-success-toast {
+          position: fixed;
+          top: 20px;
+          right: 20px;
+          color: white;
+          padding: 12px 22px;
+          border-radius: 4px;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+          z-index: 3000; 
+          min-width: 320px;
+          animation: slideInRight 0.3s ease-out;
+        }
+        .buy-bg { background-color: #4caf50; }
+        .sell-bg { background-color: #df5148; }
+        .toast-content { display: flex; align-items: center; gap: 12px; }
+        .icon-check {
+          background: rgba(255, 255, 255, 0.2);
+          width: 22px; height: 22px; border-radius: 50%;
+          display: flex; align-items: center; justify-content: center;
+        }
+        .toast-progress {
+          position: absolute; bottom: 0; left: 0; height: 3px;
+          background: rgba(255, 255, 255, 0.4); width: 100%;
+          animation: shrinkProgress 3s linear forwards;
+        }
         
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideInRight { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes shrinkProgress { from { width: 100%; } to { width: 0%; } }
 
         @media (max-width: 768px) {
           .row { flex-direction: column; gap: 20px; }
@@ -104,6 +141,17 @@ const Funds = () => {
           .btn { margin-left: 0; flex: 1; text-align: center; }
         }
       `}</style>
+
+      {/* Toast Notification */}
+      {showToast && (
+        <div className={`order-success-toast ${modalType === "ADD" ? "buy-bg" : "sell-bg"}`}>
+          <div className="toast-content">
+            <span className="icon-check">✓</span>
+            <p>{toastMsg}</p>
+          </div>
+          <div className="toast-progress"></div>
+        </div>
+      )}
 
       {showModal && (
         <div className="modal-overlay">
