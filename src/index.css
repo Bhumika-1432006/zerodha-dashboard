@@ -1197,43 +1197,47 @@ hr {
     padding-bottom: 10px;
   }
 }
-/* --- Desktop Styles --- */
 .menu-container {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 35px;
+  padding: 0 30px;
   background: #fff;
   border-bottom: 1px solid #eee;
-  height: 60px;
+  min-height: 60px;
   box-sizing: border-box;
-  z-index: 1000;
+  position: relative;
 }
 
 .menu-header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+
+.logo-img {
+  width: 35px;
 }
 
 .hamburger {
-  display: none;
+  display: none; /* Desktop */
 }
 
-.menus {
+.menus-dropdown {
   display: flex;
   align-items: center;
 }
 
-.menus ul {
+.menus-dropdown ul {
   display: flex;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.menus li {
-  margin-left: 28px;
+.menus-dropdown li {
+  margin-left: 25px;
 }
 
 .menu {
@@ -1244,26 +1248,20 @@ hr {
 
 .menu.selected {
   color: rgb(245, 104, 52);
+  font-weight: 500;
 }
 
-.mobile-divider {
-  display: none;
-}
-
-/* --- Mobile Fix (Breakpoint) --- */
+/* --- MOBILE RESPONSIVE --- */
 @media (max-width: 991px) {
   .menu-container {
     flex-direction: column;
-    align-items: flex-start;
-    height: auto; /* ALLOWS ALL ITEMS TO SHOW */
+    height: auto !important; /* Grow container as needed */
+    align-items: stretch;
     padding: 15px 20px;
-    overflow: visible;
   }
 
   .menu-header {
     width: 100%;
-    justify-content: space-between;
-    margin-bottom: 5px;
   }
 
   .hamburger {
@@ -1271,41 +1269,37 @@ hr {
     cursor: pointer;
   }
 
-  .menus {
+  .menus-dropdown {
     display: none; /* Hide when closed */
-    width: 100%;
-    flex-direction: column;
-    background: #fff;
-  }
-
-  .menus.is-open {
-    display: flex !important; /* SHOWS ALL ITEMS */
-  }
-
-  .menus ul {
     flex-direction: column;
     width: 100%;
-    padding: 10px 0;
+    padding-top: 15px;
   }
 
-  .menus li {
+  .menus-dropdown.is-open {
+    display: flex !important; /* Forces all children to be visible */
+  }
+
+  .menus-dropdown ul {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .menus-dropdown li {
     margin: 0;
-    width: 100%;
     padding: 12px 0;
     border-bottom: 1px solid #f9f9f9;
   }
 
-  .mobile-divider {
+  .mobile-hr {
     display: block;
     width: 100%;
-    border: none;
-    border-top: 1px solid #eee;
+    border: 0.5px solid #eee;
     margin: 10px 0;
   }
 
   .profile {
     margin: 0;
-    padding: 10px 0;
     justify-content: flex-start;
   }
 }

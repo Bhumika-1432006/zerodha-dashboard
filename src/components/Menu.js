@@ -14,6 +14,7 @@ const Menu = () => {
       localStorage.setItem("userEmail", emailFromUrl);
       const newUrl = window.location.origin + window.location.pathname;
       window.history.replaceState({}, document.title, newUrl);
+      console.log("Logged in as:", emailFromUrl);
     }
   }, []);
 
@@ -27,14 +28,16 @@ const Menu = () => {
 
   return (
     <div className="menu-container">
+      {/* Header section stays at the top */}
       <div className="menu-header">
-        <img src="logo.png" style={{ width: "35px" }} alt="logo" />
+        <img src="logo.png" className="logo-img" alt="logo" />
         <div className="hamburger" onClick={() => setIsMenuOpen(!isMenuOpen)}>
           {isMenuOpen ? <CloseOutlined /> : <MenuOutlined />}
         </div>
       </div>
 
-      <div className={`menus ${isMenuOpen ? "is-open" : ""}`}>
+      {/* This container will now correctly show ALL 6 items */}
+      <div className={`menus-dropdown ${isMenuOpen ? "is-open" : ""}`}>
         <ul>
           <li>
             <Link style={{ textDecoration: "none" }} to="/" onClick={() => handleMenuClick(0)}>
@@ -67,9 +70,13 @@ const Menu = () => {
             </Link>
           </li>
         </ul>
-        <hr className="mobile-divider" />
+        
+        <hr className="mobile-hr" />
+        
         <div className="profile">
-          <div className="avatar">ZU</div>
+          <a href="https://zerodha-frontend-xi.vercel.app/" className="avatar-link" style={{ textDecoration: "none" }}>
+            <div className="avatar">ZU</div>
+          </a>
           <p className="username">{localStorage.getItem("userEmail") || "USERID"}</p>
         </div>
       </div>
