@@ -5,8 +5,6 @@ import {
   BarChartOutlined,
   KeyboardArrowDown,
   KeyboardArrowUp,
-  KeyboardArrowLeft,
-  KeyboardArrowRight,
   MoreHoriz,
 } from "@mui/icons-material";
 
@@ -15,68 +13,41 @@ import { DoughnutChart } from "./DoughnoutChart";
 
 const WatchList = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  // Default to false on mobile so other pages (Holdings/Apps) are visible immediately
-  const [isOpen, setIsOpen] = useState(false);
+  // New state to toggle visibility on mobile
+  const [isMobileVisible, setIsMobileVisible] = useState(false);
 
   const filteredWatchlist = watchlist.filter((stock) =>
     (stock.name || "").toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const labels = filteredWatchlist.map((stock) => stock.name);
-
-  const data = {
-    labels,
-    datasets: [
-      {
-        label: "Price",
-        data: filteredWatchlist.map((stock) => stock.price),
-        backgroundColor: [
-          "rgba(255, 99, 132, 0.5)",
-          "rgba(54, 162, 235, 0.5)",
-          "rgba(255, 206, 86, 0.5)",
-          "rgba(75, 192, 192, 0.5)",
-          "rgba(153, 102, 255, 0.5)",
-          "rgba(255, 159, 64, 0.5)",
-        ],
-        borderColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(153, 102, 255, 1)",
-          "rgba(255, 159, 64, 1)",
-        ],
-        borderWidth: 1,
-      },
-    ],
-  };
+  // ... (keep your existing data/labels logic)
 
   return (
-    <div className={`watchlist-container ${isOpen ? "is-open" : "is-collapsed"}`}>
-      {/* THE SIDE HANDLE: Stays on the edge to pull the list in/out */}
-      <div className="mobile-drawer-handle" onClick={() => setIsOpen(!isOpen)}>
-        {isOpen ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+    <div className={`watchlist-container ${isMobileVisible ? "mobile-show" : "mobile-hide"}`}>
+      
+      {/* Toggle Arrow for Mobile */}
+      <div className="mobile-toggle" onClick={() => setIsMobileVisible(!isMobileVisible)}>
+        {isMobileVisible ? <KeyboardArrowUp /> : <BarChartOutlined />}
+        <span>{isMobileVisible ? "Close Watchlist" : "View Watchlist"}</span>
       </div>
 
       <div className="search-container">
         <input
           type="text"
-          name="search"
-          id="search"
-          placeholder="Search eg:infy, bse..."
-          className="search"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          autoComplete="off"
+          placeholder="Search..."
+          className="search"
         />
         <span className="counts"> {filteredWatchlist.length} / {watchlist.length}</span>
       </div>
 
-      <div className="watchlist-content">
+      {/* The list wrapper */}
+      <div className="list-content">
         <ul className="list">
-          {filteredWatchlist.map((stock, index) => {
-            return <WatchListItem stock={stock} key={index} />;
-          })}
+          {filteredWatchlist.map((stock, index) => (
+            <WatchListItem stock={stock} key={index} />
+          ))}
         </ul>
         <DoughnutChart data={data} />
       </div>
