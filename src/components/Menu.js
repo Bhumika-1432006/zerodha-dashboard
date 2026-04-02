@@ -114,7 +114,7 @@ const Menu = () => {
             className="avatar-link"
             style={{ textDecoration: "none" }}
           >
-            // Inside your profile div
+            
             <div
               className="avatar"
               style={{
