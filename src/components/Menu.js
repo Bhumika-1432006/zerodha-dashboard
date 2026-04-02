@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { MenuOutlined, CloseOutlined } from "@mui/icons-material"; // Import icons
+import { MenuOutlined, CloseOutlined } from "@mui/icons-material";
 
 const Menu = () => {
   const [selectedMenu, setSelectedMenu] = useState(0);
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // State for hamburger toggle
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -19,7 +19,7 @@ const Menu = () => {
 
   const handleMenuClick = (index) => {
     setSelectedMenu(index);
-    setIsMenuOpen(false); // Close menu when a link is clicked
+    setIsMenuOpen(false);
   };
 
   const menuClass = "menu";
@@ -27,16 +27,15 @@ const Menu = () => {
 
   return (
     <div className="menu-container">
+      {/* HEADER SECTION: Always visible */}
       <div className="menu-header">
-        <img src="logo.png" style={{ width: "35px" }} alt="logo" />
-        
-        {/* Hamburger Icon for Mobile */}
+        <img src="logo.png" className="logo-img" alt="logo" />
         <div className="hamburger" onClick={() => setIsMenuOpen(!isMenuOpen)}>
           {isMenuOpen ? <CloseOutlined /> : <MenuOutlined />}
         </div>
       </div>
 
-      {/* Conditional class for sliding menu */}
+      {/* NAV SECTION: Toggles on mobile */}
       <div className={`menus ${isMenuOpen ? "is-open" : ""}`}>
         <ul>
           <li>
@@ -71,7 +70,7 @@ const Menu = () => {
           </li>
         </ul>
         
-        <hr className="menu-hr" />
+        <hr className="menu-divider" />
         
         <div className="profile">
           <a href="https://zerodha-frontend-xi.vercel.app/" className="avatar-link" style={{ textDecoration: "none" }}>
