@@ -5,24 +5,26 @@ const Funds = () => {
   const [balance, setBalance] = useState(0);
   const userEmail = localStorage.getItem("userEmail");
 
-  // UI State for the modern pop-up
+  // UI State for the modern pop-up (Replaces window.prompt)
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState(""); // "ADD" or "WITHDRAW"
   const [amountInput, setAmountInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
 
-  // New states for Toast Notification
+  // New UI states for Toast Notification
   const [showToast, setShowToast] = useState(false);
   const [toastMsg, setToastMsg] = useState("");
 
   useEffect(() => {
     if (userEmail) {
+      // UPDATED URL
       axios.get(`https://zerodha-pify.onrender.com/getBalance/${userEmail}`)
         .then((res) => setBalance(res.data.balance))
         .catch(err => console.log("Balance fetch error"));
     }
   }, [userEmail]);
 
+  // Logic remains 100% identical to your original version
   const handleConfirmAction = async () => {
     const amount = amountInput;
     const password = passwordInput;
@@ -44,20 +46,21 @@ const Funds = () => {
         return;
       }
 
+      // UPDATED URL
       const res = await axios.post(`https://zerodha-pify.onrender.com${endpoint}`, {
         email: userEmail,
         password: password,
         amount: amount
       });
 
-      // --- Success Logic: Replaces browser alert ---
+      // --- Modern Notification Logic ---
       setToastMsg(modalType === "ADD" ? `₹${amount} Added Successfully!` : `₹${amount} Withdrawn Successfully!`);
       setShowToast(true);
       
       setBalance(res.data.newBalance);
       closeModal();
 
-      // Hide toast after 3 seconds
+      // Auto-hide toast after 3 seconds
       setTimeout(() => setShowToast(false), 3000);
 
     } catch (err) {
@@ -102,7 +105,7 @@ const Funds = () => {
         .modal-actions { display: flex; justify-content: flex-end; gap: 12px; margin-top: 10px; }
         .btn-cancel { background: #f5f5f5; color: #666; border: 1px solid #ddd; }
 
-        /* Toast Styles */
+        /* Modern Toast Styles */
         .order-success-toast {
           position: fixed;
           top: 20px;
@@ -142,7 +145,7 @@ const Funds = () => {
         }
       `}</style>
 
-      {/* Toast Notification */}
+      {/* Success Toast Notification */}
       {showToast && (
         <div className={`order-success-toast ${modalType === "ADD" ? "buy-bg" : "sell-bg"}`}>
           <div className="toast-content">
