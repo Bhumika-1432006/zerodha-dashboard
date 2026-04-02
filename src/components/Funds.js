@@ -3,6 +3,9 @@ import axios from "axios";
 
 const Funds = () => {
   const [balance, setBalance] = useState(0);
+  const [view, setView] = useState("funds"); // Added: toggles between "funds" and "commodity"
+  const [mobileNumber, setMobileNumber] = useState(""); // Added: for the signup input
+  const [isRegistered, setIsRegistered] = useState(false);
   const userEmail = localStorage.getItem("userEmail");
 
   // UI State for the modern pop-up (Replaces window.prompt)
@@ -78,6 +81,69 @@ const Funds = () => {
     setAmountInput("");
     setPasswordInput("");
   };
+
+  // --- COMMODITY VIEW SECTION ---
+  if (view === "commodity") {
+    return (
+      <div className="commodity-page" style={{ padding: "60px 20px", textAlign: "center", fontFamily: "Inter, sans-serif" }}>
+        <style>{`
+          .commodity-header h1 { font-size: 32px; color: #444; margin-bottom: 10px; font-weight: 500; }
+          .commodity-header p { color: #666; font-size: 20px; margin-bottom: 50px; }
+          .signup-container { display: flex; justify-content: center; align-items: flex-start; gap: 80px; margin-top: 40px; flex-wrap: wrap; }
+          .signup-form { text-align: left; max-width: 350px; width: 100%; }
+          .signup-form h2 { font-size: 28px; margin-bottom: 10px; color: #444; }
+          .signup-form p { color: #9b9b9b; margin-bottom: 30px; font-size: 14px; }
+          .input-group { display: flex; border: 1px solid #ddd; border-radius: 4px; overflow: hidden; margin-bottom: 20px; height: 45px; }
+          .country-code { padding: 0 12px; background: #fff; border-right: 1px solid #ddd; color: #444; display: flex; align-items: center; gap: 8px; }
+          .signup-input { border: none; padding: 0 12px; font-size: 16px; width: 100%; outline: none; }
+          .btn-otp { width: 100%; padding: 12px; background: #387ed1; color: white; border: none; border-radius: 4px; font-size: 16px; font-weight: 500; cursor: pointer; }
+          .back-link { display: block; margin-top: 20px; color: #387ed1; text-decoration: none; cursor: pointer; font-size: 14px; }
+        `}</style>
+        
+        <div className="commodity-header">
+          <h1>Commodity trading made simple</h1>
+          <p>Start trading commodities with Zerodha today</p>
+        </div>
+
+        <div className="signup-container">
+          <div className="signup-image">
+            <img src="https://zerodha.com/static/images/products-kite.png" alt="Kite Platform" style={{ width: "100%", maxWidth: "450px" }} />
+          </div>
+
+          <div className="signup-form">
+            {!isRegistered ? (
+              <>
+                <h2>New to Zerodha?</h2>
+                <p>Login to start trading instantly for free.</p>
+                <div className="input-group">
+                  <div className="country-code">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg" alt="IN" style={{ width: "20px" }} />
+                    <span>+91</span>
+                  </div>
+                  <input 
+                    type="text" 
+                    className="signup-input" 
+                    placeholder="Enter your mobile number" 
+                    value={mobileNumber}
+                    onChange={(e) => setMobileNumber(e.target.value)}
+                  />
+                </div>
+                <button className="btn-otp" onClick={() => mobileNumber.length === 10 ? setIsRegistered(true) : alert("Enter valid number")}>
+                  Get OTP
+                </button>
+              </>
+            ) : (
+              <div style={{ animation: "fadeIn 0.5s" }}>
+                <h2 style={{ color: "#4caf50" }}>Registered!</h2>
+                <p>Mobile <b>+91 {mobileNumber}</b> is now active for Commodities.</p>
+              </div>
+            )}
+            <span className="back-link" onClick={() => setView("funds")}>← Back to Funds</span>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="funds-container">
@@ -229,10 +295,13 @@ const Funds = () => {
         </div>
 
         <div className="col">
-          <div className="commodity-box">
-            <p>You don't have a commodity account</p>
-            <button className="btn btn-blue">Open Account</button>
-          </div>
+         <div className="commodity-box">
+    <p>You don't have a commodity account</p>
+    {/* Updated: This now triggers the view change */}
+    <button className="btn btn-blue" onClick={() => setView("commodity")}>
+      Open Account
+    </button>
+  </div>
         </div>
       </div>
     </div>
