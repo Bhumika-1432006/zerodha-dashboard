@@ -34,29 +34,13 @@ const AppData = () => {
             boxShadow: "0 2px 5px rgba(0,0,0,0.03)"
           }}>
             <div style={{ fontSize: "2.8rem", marginBottom: "10px" }}>{app.icon}</div>
-            <span style={{ 
-              fontSize: "0.7rem", 
-              background: "#eef2ff", 
-              padding: "4px 10px", 
-              borderRadius: "15px", 
-              color: "#4184f3", 
-              fontWeight: "600" 
-            }}>
+            <span style={{ fontSize: "0.7rem", background: "#eef2ff", padding: "4px 10px", borderRadius: "15px", color: "#4184f3", fontWeight: "600" }}>
               {app.tag}
             </span>
             <h4 style={{ margin: "15px 0 8px 0", fontWeight: "500" }}>{app.name}</h4>
             <p style={{ fontSize: "0.85rem", color: "#888", minHeight: "45px" }}>{app.description}</p>
             <button 
-              style={{ 
-                marginTop: "15px", 
-                width: "100%", 
-                padding: "10px", 
-                backgroundColor: "#4184f3", 
-                color: "white", 
-                border: "none", 
-                borderRadius: "3px",
-                cursor: "pointer" 
-              }}
+              style={{ marginTop: "15px", width: "100%", padding: "10px", backgroundColor: "#4184f3", color: "white", border: "none", borderRadius: "3px", cursor: "pointer" }}
               onClick={() => window.open(app.link, "_blank")}
             >
               Explore

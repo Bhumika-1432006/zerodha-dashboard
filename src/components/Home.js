@@ -3,7 +3,7 @@ import React from "react";
 
 
 import Dashboard from "./Dashboard";
-
+import Apps from "./Apps";
 import TopBar from "./TopBar";
 
 
@@ -15,7 +15,7 @@ const Home = () => {
     <>
 
       <TopBar />
-
+      <Apps />
       <Dashboard />
 
     </>
