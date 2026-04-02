@@ -73,7 +73,7 @@ const Menu = () => {
         
         <div className="profile">
           <a href="https://zerodha-frontend-xi.vercel.app/" className="avatar-link" style={{ textDecoration: "none" }}>
-            <div className="avatar">ZU</div>
+            <div className="avatar">Log-Out</div>
           </a>
           <p className="username">{localStorage.getItem("userEmail") || "USERID"}</p>
         </div>
