@@ -14,7 +14,6 @@ const Menu = () => {
       localStorage.setItem("userEmail", emailFromUrl);
       const newUrl = window.location.origin + window.location.pathname;
       window.history.replaceState({}, document.title, newUrl);
-      console.log("Logged in as:", emailFromUrl);
     }
   }, []);
 
@@ -27,6 +26,7 @@ const Menu = () => {
   const activeMenuClass = "menu selected";
 
   return (
+    // Added a dynamic class to the main wrapper to control the height of the whole bar
     <div className={`menu-container ${isMenuOpen ? "is-open" : ""}`}>
       <div className="menu-header">
         <img src="logo.png" className="logo-img" alt="logo" />

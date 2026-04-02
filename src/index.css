@@ -1197,97 +1197,78 @@ hr {
     padding-bottom: 10px;
   }
 }
-/* --- Desktop Styles (Keep yours) --- */
-.menu-container {
-  flex-basis: 68%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #fff;
-}
-
-.menus ul {
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.menus li {
-  margin-left: 25px;
-}
-
-/* --- THE FORCED MOBILE FIX --- */
+/* --- FORCE RESET FOR MOBILE --- */
 @media (max-width: 991px) {
-  /* This ensures the parent bar doesn't cut off the menu */
+  /* 1. Force the parent container to grow */
   .topbar-container {
     height: auto !important;
+    min-height: 10vh;
     overflow: visible !important;
+    display: block !important;
   }
 
+  /* 2. Force the menu wrapper to grow and stack */
   .menu-container {
-    width: 100%;
-    display: block; /* Stack logo and menu */
     height: auto !important;
-    position: relative;
-    padding: 10px 20px;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    padding: 10px 20px !important;
+    flex-basis: 100% !important;
   }
 
+  /* 3. Keep Logo and Hamburger in one row */
   .menu-header {
     width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 60px; /* Force the header height */
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    height: 60px;
   }
 
+  /* 4. The Dropdown itself */
   .menus {
-    display: none; 
-    flex-direction: column;
+    display: none; /* Hidden by default */
     width: 100%;
+    flex-direction: column !important;
+    padding: 10px 0 !important;
     background: #fff;
-    /* This ensures it starts exactly below the header */
-    padding: 10px 0;
   }
 
-  /* FORCE Visibility of all items */
+  /* 5. FORCE OPEN STATE */
   .menus.is-open {
     display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
   }
 
   .menus ul {
-    flex-direction: column;
+    flex-direction: column !important;
     width: 100%;
-    margin: 0;
-    padding: 0;
+    padding: 0 !important;
+    margin: 0 !important;
   }
 
   .menus li {
-    margin: 0;
-    width: 100%;
-    padding: 12px 0;
+    display: block !important;
+    margin: 0 !important;
+    padding: 15px 0 !important;
     border-bottom: 1px solid #f5f5f5;
-    display: block !important; /* Force items to show */
   }
 
   .menu {
-    font-size: 1rem !important; /* Make it easier to tap */
-    display: block;
+    font-size: 1rem !important;
+    margin: 0 !important;
   }
 
   .mobile-hr {
-    display: block;
-    border: none;
-    border-top: 1px solid #eee;
-    margin: 15px 0;
+    display: block !important;
+    width: 100%;
+    margin: 15px 0 !important;
+    border-top: 1px solid #eee !important;
   }
 
   .profile {
-    margin: 0;
-    padding-bottom: 20px;
-    justify-content: flex-start;
+    margin: 0 !important;
+    justify-content: flex-start !important;
+    padding-bottom: 20px !important;
   }
 }
