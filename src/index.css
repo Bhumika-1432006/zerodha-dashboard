@@ -961,3 +961,76 @@ hr {
     flex-basis: 32%;
   }
 }
+/* --- Desktop Styles (Keep existing or adjust) --- */
+.menu-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  height: 60px;
+}
+
+.hamburger {
+  display: none; /* Hide on desktop */
+  cursor: pointer;
+}
+
+/* --- Mobile Styles --- */
+@media (max-width: 768px) {
+  .menu-container {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    padding: 10px 20px;
+  }
+
+  .menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .hamburger {
+    display: block; /* Show icon on mobile */
+    font-size: 1.5rem;
+    color: #444;
+  }
+
+  .menus {
+    display: none; /* Hide by default on mobile */
+    width: 100%;
+    flex-direction: column;
+    padding: 20px 0;
+  }
+
+  /* When Hamburger is clicked */
+  .menus.is-open {
+    display: flex;
+    border-top: 1px solid #eee;
+    margin-top: 10px;
+  }
+
+  .menus ul {
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+  }
+
+  .menus li {
+    display: block;
+    margin: 10px 0;
+  }
+
+  .menu-hr {
+    width: 100%;
+    margin: 15px 0;
+  }
+
+  .profile {
+    margin-left: 0 !important;
+    justify-content: flex-start !important;
+  }
+}

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { MenuOutlined, CloseOutlined } from "@mui/icons-material"; // Import icons
 
 const Menu = () => {
   const [selectedMenu, setSelectedMenu] = useState(0);
-  const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // State for hamburger toggle
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -11,20 +12,14 @@ const Menu = () => {
     
     if (emailFromUrl) {
       localStorage.setItem("userEmail", emailFromUrl);
-      
       const newUrl = window.location.origin + window.location.pathname;
       window.history.replaceState({}, document.title, newUrl);
-      
-      console.log("Logged in as:", emailFromUrl);
     }
   }, []);
 
   const handleMenuClick = (index) => {
     setSelectedMenu(index);
-  };
-
-  const handleProfileClick = () => {
-    setIsProfileDropdownOpen(!isProfileDropdownOpen);
+    setIsMenuOpen(false); // Close menu when a link is clicked
   };
 
   const menuClass = "menu";
@@ -32,8 +27,17 @@ const Menu = () => {
 
   return (
     <div className="menu-container">
-      <img src="logo.png" style={{ width: "50px" }} alt="logo" />
-      <div className="menus">
+      <div className="menu-header">
+        <img src="logo.png" style={{ width: "35px" }} alt="logo" />
+        
+        {/* Hamburger Icon for Mobile */}
+        <div className="hamburger" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          {isMenuOpen ? <CloseOutlined /> : <MenuOutlined />}
+        </div>
+      </div>
+
+      {/* Conditional class for sliding menu */}
+      <div className={`menus ${isMenuOpen ? "is-open" : ""}`}>
         <ul>
           <li>
             <Link style={{ textDecoration: "none" }} to="/" onClick={() => handleMenuClick(0)}>
@@ -66,9 +70,10 @@ const Menu = () => {
             </Link>
           </li>
         </ul>
-        <hr />
-        <div className="profile" onClick={handleProfileClick}>
-          {/* UPDATED: Points to your live Landing Page URL from Vercel screenshot */}
+        
+        <hr className="menu-hr" />
+        
+        <div className="profile">
           <a href="https://zerodha-frontend-xi.vercel.app/" className="avatar-link" style={{ textDecoration: "none" }}>
             <div className="avatar">ZU</div>
           </a>
