@@ -7,7 +7,7 @@ import Orders from "./Orders";
 import Holdings from "./Holdings";
 import Positions from "./Positions";
 import Funds from "./Funds";
-import MenuApps from "./MenuApps";
+import MenuApps from "./appdata";
 
 const Apps = () => {
   return (
