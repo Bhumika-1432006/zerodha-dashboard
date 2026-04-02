@@ -824,4 +824,69 @@ hr {
   margin-top: 5px;
 }
 
+/* --- WATCHLIST MOBILE OVERLAY --- */
+@media (max-width: 991px) {
+  .watchlist-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw; /* Full width on mobile */
+    height: 100vh;
+    background: white;
+    z-index: 3000; /* Ensure it's above everything else */
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
 
+  /* Slide it completely to the left out of view */
+  .mobile-hide {
+    transform: translateX(-100%);
+  }
+
+  /* Slide it into view */
+  .mobile-show {
+    transform: translateX(0);
+  }
+
+  /* THE TOGGLE BUTTON - This needs to stay visible on the dashboard */
+  .mobile-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #4184f3;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 4000; /* Higher than the container */
+    cursor: pointer;
+  }
+
+  .mobile-toggle span {
+    font-size: 0.6rem;
+    text-align: center;
+  }
+
+  /* Ensure the list scrolls if it's long */
+  .list-content {
+    height: calc(100vh - 80px);
+    overflow-y: auto;
+  }
+}
+
+/* DESKTOP VIEW RESET */
+@media (min-width: 992px) {
+  .mobile-toggle {
+    display: none;
+  }
+  .watchlist-container {
+    transform: none !important;
+    flex-basis: 32%;
+    position: relative;
+    display: block;
+  }
+}
